@@ -8,6 +8,7 @@ import useForm from '../../../hooks/useForm';
 import './SignInForm.css';
 
 import * as authService from '../../../services/authService';
+import * as constants from '../../../constants/constants';
 
 const SignInForm = () => {    
     const { signIn } = useAuthContext();
@@ -19,10 +20,11 @@ const SignInForm = () => {
         authService.signIn(values.username, values.password)
             .then((authData) => {
                 signIn(authData);
-                showNotification('You logged in successfully', types.success);
+                showNotification(constants.YOU_SIGNED_SUCCESSFULLY, types.success);
                 navigate('/');
             })
-            .catch(err => {                
+            .catch(err => {           
+                console.log(err);     
                 showNotification(err, types.danger);
             });
     }
@@ -46,7 +48,7 @@ const SignInForm = () => {
 
                 <div className="custom-field-input">
                     <label className="field field-border-bottom">
-                        <input type="password" className="field-input" name="password" placeholder=" " onChange={debounce(handleChange, 200)} onBlur={handleChange} />
+                        <input type="password" className="field-input" name="password" autoComplete="on" placeholder=" " onChange={debounce(handleChange, 200)} onBlur={handleChange} />
                         <span className="field-label-wrap">
                             <span className="field-label">Password</span>
                         </span>

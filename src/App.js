@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext'
+
 import './App.css';
 
 import Notification from './components/Common/Notification';
@@ -10,6 +11,7 @@ import Home from './components/Home';
 import SignIn from './components/SignIn';
 import Footer from './components/Footer'
 import SignUp from './components/SignUp';
+import SignOut from './components/SignOut';
 
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/signout" element={<SignOut />} />
             </Routes>
           </main>
           <Footer />

@@ -20,7 +20,7 @@ const SignUpForm = () => {
         authService.signUp(values.username,values.email, values.password)
         .then((authData) => {
             signIn(authData);
-            showNotification('You logged in successfully', types.success);
+            showNotification('You signed in successfully', types.success);
             navigate('/');
         })
         .catch(err => {                
