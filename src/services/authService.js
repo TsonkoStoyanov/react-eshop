@@ -11,17 +11,18 @@ export const signIn = async (username, password) => {
 
     let jsonResult = await response.json();
 
-    console.log(jsonResult);
-
-    if (response.ok) {
-        return jsonResult;
+    if (response.ok && jsonResult.statusCode === 200) {
+        return jsonResult.value;
+    } else if (jsonResult.statusCode === 401) {
+        throw ('Invalid credentials.');
     } else {
-        throw jsonResult.message;
+        let responseError = jsonResult.value.message ? jsonResult.value.message : 'Something get wrong';
+        throw  responseError;
     }
 };
 
 export const signUp = async (username, email, password) => {
-    let response =  fetch(`${BASE_URL}/signUp`, {
+    let response = await fetch(`${BASE_URL}/signUp`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -30,13 +31,14 @@ export const signUp = async (username, email, password) => {
     });
 
     let jsonResult = await response.json();
-
+    
     console.log(jsonResult);
 
-    if (response.ok) {
-        return jsonResult;
+    if (response.ok && jsonResult.statusCode === 200) {
+        return jsonResult.value;
     } else {
-        throw jsonResult.message;
+        let responseError = jsonResult.value.message ? jsonResult.value.message : 'Something get wrong';
+        throw responseError;
     }
 }
 
@@ -50,14 +52,11 @@ export const signOut = async (username, token) => {
         body: JSON.stringify({ username })
     });
 
-    let jsonResult = await response.json();
-
-    console.log(jsonResult.value);
+    let jsonResult = await response.json();    
 
     if (response.ok) {
         return jsonResult.value;
-    } else {
-        console.log(jsonResult.message)
+    } else {        
         throw jsonResult.message;
     }
 };

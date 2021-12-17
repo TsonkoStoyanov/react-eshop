@@ -23,7 +23,7 @@
   
   .field {
     width: 100%;
-    --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
+    --uiFieldBorderWidth: var(--fieldBorderWidth, 1px);
     --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
     --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);
     --uiFieldBorderColorActive: var(

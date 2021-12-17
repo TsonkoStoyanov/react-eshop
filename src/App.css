@@ -8,4 +8,5 @@
 .site-content{
   flex: 1;
   padding: 2em 0;  
+  position: relative;
 }

@@ -1,8 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { NotificationProvider } from './contexts/NotificationContext'
 import './App.css';
 
+import Notification from './components/Common/Notification';
 import Header from './components/Header';
 import Home from './components/Home';
 import SignIn from './components/SignIn';
@@ -14,15 +16,18 @@ function App() {
   return (
     <div className="site-wrapper">
       <AuthProvider>
-        <Header />
-        <main className="site-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </main>
-        <Footer />
+        <NotificationProvider>
+          <Header />
+          <main className="site-content">
+            <Notification />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+            </Routes>
+          </main>
+          <Footer />
+        </NotificationProvider>
       </AuthProvider>
     </div>
   );

@@ -6,10 +6,10 @@ const useForm = (callback) => {
     const [values, setValues] = useState({});
     const [errors, setErrors] = useState({});
 
-    const validate = (e, name, value) => {
+    const validate = (name, value) => {
         switch (name) {
             case 'username':
-                if (value.trim().length === 0) {
+                if (value.length === 0) {
                     setErrors({
                         ...errors,
                         username: 'The field is required.'
@@ -21,7 +21,7 @@ const useForm = (callback) => {
                 break;
 
             case 'password':
-                if (value.trim().length === 0) {
+                if (value.length === 0) {
 
                     setErrors({
                         ...errors,
@@ -36,7 +36,7 @@ const useForm = (callback) => {
                 break;
                 
             case 'email':
-                if (value.trim().length === 0) {
+                if (value.length === 0) {
                     setErrors({
                         ...errors,
                         email: 'The field is required.'
@@ -67,7 +67,7 @@ const useForm = (callback) => {
         let name = e.target.name;
         let val = e.target.value;
 
-        validate(e, name, val);
+        validate(name, val);
         setValues({
             ...values,
             [name]: val,
@@ -76,9 +76,7 @@ const useForm = (callback) => {
     }
 
     const handleSubmit = (e) => {
-        if (e) {
-            e.preventDefault();
-        }
+        e.preventDefault();
 
         if (Object.keys(errors).length === 0 && Object.keys(values).length !== 0) {
             callback();
@@ -91,7 +89,7 @@ const useForm = (callback) => {
 
     return {
         values,
-        errors,
+        errors,        
         handleChange,
         handleSubmit
     }

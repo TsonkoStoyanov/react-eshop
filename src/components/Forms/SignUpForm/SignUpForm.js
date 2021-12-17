@@ -1,12 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { debounce } from 'lodash';
+
+import { useAuthContext } from '../../../contexts/AuthContext';
+import { useNotificationContext, types } from '../../../contexts/NotificationContext';
 
 import useForm from '../../../hooks/useForm';
 import './SignUpForm.css';
 
-const SignUpForm = () => {
-    const signUpFormHandler = () => {
+import * as authService from '../../../services/authService';
 
+const SignUpForm = () => {
+    
+    const navigate = useNavigate();
+    const { signIn } = useAuthContext();
+    const { showNotification } = useNotificationContext();
+
+    const signUpFormHandler = () => {
+       
+        authService.signUp(values.username,values.email, values.password)
+        .then((authData) => {
+            signIn(authData);
+            showNotification('You logged in successfully', types.success);
+            navigate('/');
+        })
+        .catch(err => {                
+            showNotification(err, types.danger);
+        });
     }
 
     const { handleChange, values, errors, handleSubmit } = useForm(signUpFormHandler);
@@ -18,7 +37,8 @@ const SignUpForm = () => {
 
             <div className="custom-field-input">
                 <label className="field field-border-bottom">
-                    <input type="text" className="field-input" name="username" placeholder=" " onChange={debounce(handleChange, 200)} />
+                    <input type="text" className="field-input" name="username" placeholder=" " 
+                    onChange={debounce(handleChange, 200)} onBlur={handleChange}/>
                     <span className="field-label-wrap">
                         <span className="field-label">Username</span>
                     </span>
@@ -28,7 +48,8 @@ const SignUpForm = () => {
 
             <div className="custom-field-input">
                 <label className="field field-border-bottom">
-                    <input type="text" className="field-input" name="email" placeholder=" " onChange={debounce(handleChange, 200)} />
+                    <input type="text" className="field-input" name="email" placeholder=" " 
+                    onChange={debounce(handleChange, 200)} onBlur={handleChange}/>
                     <span className="field-label-wrap">
                         <span className="field-label">Email</span>
                     </span>
@@ -38,7 +59,8 @@ const SignUpForm = () => {
 
             <div className="custom-field-input">
                 <label className="field field-border-bottom">
-                    <input type="password" className="field-input" name="password" placeholder=" " onChange={debounce(handleChange, 200)} />
+                    <input type="password" className="field-input" name="password" placeholder=" " onChange={debounce(handleChange, 200)} 
+                    onBlur={handleChange}/>
                     <span className="field-label-wrap">
                         <span className="field-label">Password</span>
                     </span>
