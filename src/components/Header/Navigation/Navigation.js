@@ -16,7 +16,7 @@ const Navigation = () => {
                 {user.username && <li className="nav-item">Welcome, {user.username}</li>}
                 
                 {isAdmin
-                    ? <li className="nav-item"><NavLink className="nav-link" to="/product/add">Add Porduct</NavLink></li>
+                    ? <li className="nav-item"><NavLink className="nav-link" to="/products/create">Create Porduct</NavLink></li>
                     : ""
                 }
                 

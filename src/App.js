@@ -12,6 +12,7 @@ import SignIn from './components/SignIn';
 import Footer from './components/Footer'
 import SignUp from './components/SignUp';
 import SignOut from './components/SignOut';
+import Create from './components/Products/Create/Create';
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
             <Notification />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/products/create" element={<Create/>} />      
+              <Route path="/products/details/:id" element={<Create/>} />              
+              <Route path="/products/edit/:id" element={<Create/>} />              
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signout" element={<SignOut />} />

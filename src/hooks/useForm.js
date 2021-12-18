@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { omit } from 'lodash'
 
+import * as constants from '../constants/constants';
+
 const useForm = (callback) => {
 
     const [values, setValues] = useState({});
@@ -12,7 +14,7 @@ const useForm = (callback) => {
                 if (value.length === 0) {
                     setErrors({
                         ...errors,
-                        username: 'The field is required.'
+                        username: constants.REQUIRED_FIELD
                     })
                 } else {
                     let newObj = omit(errors, "username");
@@ -22,36 +24,100 @@ const useForm = (callback) => {
 
             case 'password':
                 if (value.length === 0) {
-
                     setErrors({
                         ...errors,
-                        password: 'The field is required.'
+                        password: constants.REQUIRED_FIELD
                     })
                 } else {
-
                     let newObj = omit(errors, "password");
                     setErrors(newObj);
 
                 }
                 break;
-                
+
             case 'email':
                 if (value.length === 0) {
                     setErrors({
                         ...errors,
-                        email: 'The field is required.'
+                        email: constants.REQUIRED_FIELD
                     })
                 } else if (
                     !new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(value)
-                    ) {
-
+                ) {
                     setErrors({
                         ...errors,
-                        email: 'Enter a valid email address.'
+                        email: constants.VALID_EMAIL
                     })
                 }
                 else {
                     let newObj = omit(errors, "email");
+                    setErrors(newObj);
+                }
+                break;
+
+            case 'name':
+                if (value.length === 0) {
+                    setErrors({
+                        ...errors,
+                        name: constants.REQUIRED_FIELD
+                    })
+                }
+                else if (value.length < 3) {
+                    setErrors({
+                        ...errors,
+                        name: constants.MIN_CHARACTERS_FIELD
+                    })
+                } else {
+                    let newObj = omit(errors, "name");
+                    setErrors(newObj);
+                }
+                break;
+
+            case 'description':
+                if (value.length === 0) {
+                    setErrors({
+                        ...errors,
+                        description: constants.REQUIRED_FIELD
+                    })
+                }
+                else if (value.length < 3) {
+                    setErrors({
+                        ...errors,
+                        description: constants.MIN_CHARACTERS_FIELD
+                    })
+                } else {
+                    let newObj = omit(errors, "description");
+                    setErrors(newObj);
+                }
+                break;
+
+            case 'imageUrl':
+                if (value.length === 0) {
+                    setErrors({
+                        ...errors,
+                        imageUrl: constants.REQUIRED_FIELD
+                    })
+                }
+                else {
+                    let newObj = omit(errors, "imageUrl");
+                    setErrors(newObj);
+                }
+                break;
+
+            case 'price':
+                if (value.length === 0) {
+                    setErrors({
+                        ...errors,
+                        price: constants.REQUIRED_FIELD
+                    })
+                }
+                else if (Number(value) < 0) {
+                    setErrors({
+                        ...errors,
+                        price: constants.MIN_PRICE
+                    })
+                } else {
+                    let newObj = omit(errors, "price");
                     setErrors(newObj);
                 }
                 break;
@@ -86,10 +152,9 @@ const useForm = (callback) => {
         }
     }
 
-
     return {
         values,
-        errors,        
+        errors,
         handleChange,
         handleSubmit
     }

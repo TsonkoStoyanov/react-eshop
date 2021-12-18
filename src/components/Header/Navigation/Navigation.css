@@ -26,7 +26,8 @@ nav{
 }
 
     .site-nav .nav-item {
-        list-style: outside none;        
+        list-style: outside none; 
+        color: white;       
     }
 
     .site-nav .nav-link{

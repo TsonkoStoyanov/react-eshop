@@ -5,6 +5,7 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import { useNotificationContext, types } from '../../contexts/NotificationContext';
 
 import * as authService from '../../services/authService';
+import * as constants from '../../constants/constants';
 
 const SignOut = () => {
     const { user, signOut } = useAuthContext();
@@ -15,7 +16,7 @@ const SignOut = () => {
         authService.signOut(user.token)
             .then(() => {
                 signOut();
-                showNotification('Successfully signed out.', types.success);
+                showNotification(constants.SIGNED_OUt_SUCCESSFULLY, types.success);
                 navigate('/');
             }).catch(err => {
                 console.log(err);

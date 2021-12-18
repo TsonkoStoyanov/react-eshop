@@ -8,6 +8,7 @@ import useForm from '../../../hooks/useForm';
 import './SignUpForm.css';
 
 import * as authService from '../../../services/authService';
+import * as constants from '../../../constants/constants';
 
 const SignUpForm = () => {
     
@@ -19,8 +20,8 @@ const SignUpForm = () => {
        
         authService.signUp(values.username,values.email, values.password)
         .then((authData) => {
-            signIn(authData);
-            showNotification('You signed in successfully', types.success);
+            signIn(authData.value);
+            showNotification(constants.SIGNED_IN_SUCCESSFULLY, types.success);
             navigate('/');
         })
         .catch(err => {                
@@ -37,7 +38,7 @@ const SignUpForm = () => {
 
             <div className="custom-field-input">
                 <label className="field field-border-bottom">
-                    <input type="text" className="field-input" name="username" placeholder=" " 
+                    <input type="text" className="field-input" value={values.username} name="username" placeholder=" " 
                     onChange={debounce(handleChange, 200)} onBlur={handleChange}/>
                     <span className="field-label-wrap">
                         <span className="field-label">Username</span>
@@ -59,8 +60,9 @@ const SignUpForm = () => {
 
             <div className="custom-field-input">
                 <label className="field field-border-bottom">
-                    <input type="password" className="field-input" name="password" placeholder=" " onChange={debounce(handleChange, 200)} 
-                    onBlur={handleChange}/>
+                    <input type="password" className="field-input" name="password" placeholder=" "
+                     onChange={debounce(handleChange, 200)} 
+                    onBlur={handleChange} onBlur={handleChange}/>
                     <span className="field-label-wrap">
                         <span className="field-label">Password</span>
                     </span>

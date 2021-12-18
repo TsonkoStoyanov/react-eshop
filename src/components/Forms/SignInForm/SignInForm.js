@@ -19,12 +19,11 @@ const SignInForm = () => {
 
         authService.signIn(values.username, values.password)
             .then((authData) => {
-                signIn(authData);
-                showNotification(constants.YOU_SIGNED_SUCCESSFULLY, types.success);
+                signIn(authData.value);
+                showNotification(constants.SIGNED_IN_SUCCESSFULLY, types.success);
                 navigate('/');
             })
-            .catch(err => {           
-                console.log(err);     
+            .catch(err => {                           
                 showNotification(err, types.danger);
             });
     }
@@ -38,7 +37,8 @@ const SignInForm = () => {
 
                 <div className="custom-field-input">
                     <label className="field field-border-bottom">
-                        <input type="text" className="field-input" name="username" placeholder=" " onChange={debounce(handleChange, 200)} onBlur={handleChange} />
+                        <input type="text" className="field-input" name="username" autoComplete="on" placeholder=" " 
+                        onChange={debounce(handleChange, 200)} onBlur={handleChange} />
                         <span className="field-label-wrap">
                             <span className="field-label">Username</span>
                         </span>
@@ -48,7 +48,8 @@ const SignInForm = () => {
 
                 <div className="custom-field-input">
                     <label className="field field-border-bottom">
-                        <input type="password" className="field-input" name="password" autoComplete="on" placeholder=" " onChange={debounce(handleChange, 200)} onBlur={handleChange} />
+                        <input type="password" className="field-input" name="password" autoComplete="on" placeholder=" " 
+                        onChange={debounce(handleChange, 200)} onBlur={handleChange} />
                         <span className="field-label-wrap">
                             <span className="field-label">Password</span>
                         </span>
