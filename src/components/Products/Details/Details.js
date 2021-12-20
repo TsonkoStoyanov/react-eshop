@@ -38,6 +38,8 @@ const Details = () => {
 		<section className="product">
 			<div className="product-photo">
 				<div className="photo-container">
+					{Number(product.discount) !== 0 ? <span className="discount">{product.discount}% off</span> : ""}
+					{product.status && <span className="status">{product.status}</span>}
 					<div className="photo-main">
 						<img src={product.imageUrl} alt={product.name} />
 					</div>
@@ -48,14 +50,20 @@ const Details = () => {
 					<h1>{product.name}</h1>
 				</div>
 				<div className="price">
-					<span>{product.price} $</span>
+					{Number(product.discount) !== 0
+						? <span className="product-old-price">{product.price}$</span>
+						: ""}
+					<span className="product-new-price">{product.price - product.price * (product.discount / 100)}$</span>
 				</div>
 				<div className="description">
 					<h3>PRODUCT DESCRIPTION</h3>
 					<p>{product.description}</p>
 				</div>
-				<button className="btn btn-primary">Add to cart</button>
-				{isAdmin && adminActions}
+
+				{isAdmin
+					? adminActions
+					: <button className="btn btn-primary">Add to cart</button>
+				}
 			</div>
 		</section>
 	)

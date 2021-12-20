@@ -14,6 +14,7 @@ import SignUp from './components/SignUp';
 import SignOut from './components/SignOut';
 import Create from './components/Products/Create/Create';
 import Details from './components/Products/Details';
+import Edit from './components/Products/Edit';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/products/create" element={<Create/>} />      
               <Route path="/products/details/:productId" element={<Details/>} />              
-              <Route path="/products/edit/:productId" element={<Create/>} />              
+              <Route path="/products/edit/:productId" element={<Edit/>} />              
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signout" element={<SignOut />} />

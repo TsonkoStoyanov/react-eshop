@@ -1,5 +1,4 @@
-  
-  .signin-form {        
+    .signin-form {        
     max-width: 27em;
     margin: auto;
     padding: 2em;      
@@ -49,6 +48,10 @@
     -moz-appearance: none;
     font-family: inherit;
     font-size: inherit;
+  }
+
+  .field-input.text-area{
+    height: var(--fieldHeight, 5em);
   }
   
   .field-input:focus::-webkit-input-placeholder {

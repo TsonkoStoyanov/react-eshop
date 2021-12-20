@@ -5,6 +5,7 @@ export const SIGNED_IN_SUCCESSFULLY = 'You signed in successfully';
 export const SIGNED_OUt_SUCCESSFULLY = 'Successfully signed out.';
 export const NOT_AUTHORIZED = 'Not Authorised.';
 export const PRODUCT_CREATED = 'Successfully create product.';
+export const PRODUCT_UPDATED = 'Successfully update product.';
 export const REQUIRED_FIELD = 'The field is required.';
 export const MIN_CHARACTERS_FIELD = 'The field length must be 3 charachter.';
 export const MIN_PRICE = 'Price must be positive number.';
