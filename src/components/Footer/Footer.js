@@ -3,7 +3,7 @@ import './Footer.css';
 const Footer = () => {
     return (
         <footer className="site-footer">
-            <p>Footer</p>
+            <p><small>&copy; Copyright 2021, Sneakers eShop</small></p>
         </footer>
     )
 }

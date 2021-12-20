@@ -1,7 +1,6 @@
 import * as constants from '../constants/constants';
 
 export const getAll = async () => {
-    try {
         let response = await fetch(`${constants.BASE_URL}/products`);
 
         let jsonResult = await response.json();
@@ -9,19 +8,23 @@ export const getAll = async () => {
         if (response.ok) {
             return jsonResult;        
         } else {
-            throw jsonResult.value.message;
+            throw jsonResult.value?.message;
         }
+};
 
-    }
-    catch(error) {
-        console.log(error);
-        throw constants.SOMETHING_GET_WRONG;
+export const getOne = async (productId) => {
+    let response = await fetch(`${constants.BASE_URL}/products/${productId}`);
+
+    let jsonResult = await response.json();
+
+    if (response.ok) {
+        return jsonResult;        
+    } else {
+        throw jsonResult.value?.message;
     }
 };
 
-
 export const create = async (product, token) => {
-    try {
         let response = await fetch(`${constants.BASE_URL}/products`, {
             method: 'POST',
             headers: {
@@ -38,18 +41,11 @@ export const create = async (product, token) => {
         } else if (jsonResult.statusCode === 401) {
             throw constants.INVALID_CREDENTIALS;
         } else {
-            throw jsonResult.value.message;
+            throw jsonResult.value?.message;
         }
-
-    }
-    catch(error) {
-        console.log(error);
-        throw constants.SOMETHING_GET_WRONG;
-    }
 };
 
 export const update = async (productId, product, token) => {
-    try {
 
         let response = await fetch(`${constants.BASE_URL}/products/${productId}`, {
             method: 'PUT',
@@ -67,17 +63,11 @@ export const update = async (productId, product, token) => {
         } else if (jsonResult.statusCode === 401) {
             throw constants.INVALID_CREDENTIALS;
         } else {
-            throw jsonResult.value.message;
+            throw jsonResult.value?.message;
         }
-
-    } catch(error) {
-        console.log(error);
-        throw constants.SOMETHING_GET_WRONG;
-    }
 }
 
 export const del = async (productId, token) => {
-    try {
 
         let response = await fetch(`${constants.BASE_URL}/products/${productId}`, {
             method: 'DELETE',
@@ -93,10 +83,6 @@ export const del = async (productId, token) => {
         } else if (jsonResult.statusCode === 401) {
             throw constants.INVALID_CREDENTIALS;
         } else {
-            throw jsonResult.value.message;
+            throw jsonResult.value?.message;
         }
-    } catch(error) {
-        console.log(error);
-        throw constants.SOMETHING_GET_WRONG;
-    }
 }

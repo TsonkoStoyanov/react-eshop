@@ -1,7 +1,6 @@
 import * as constants from '../constants/constants';
 
 export const signIn = async (username, password) => {
-    try {
         let response = await fetch(`${constants.BASE_URL}/signIn`, {
             method: 'POST',
             headers: {
@@ -17,37 +16,27 @@ export const signIn = async (username, password) => {
         } else if (jsonResult.statusCode === 401) {
             throw constants.INVALID_CREDENTIALS;
         } else {
-            throw jsonResult.value.message;
+            throw jsonResult.value?.message;
         }
-    }
-    catch(error) {        
-        console.log(error);
-        throw constants.SOMETHING_GET_WRONG;
-    }
 };
 
 export const signUp = async (username, email, password) => {
-    try {
+    let response = await fetch(`${constants.BASE_URL}/signUp`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+    });
 
-        let response = await fetch(`${constants.BASE_URL}/signUp`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ username, email, password })
-        });
-        
-        let jsonResult = await response.json();
+    let jsonResult = await response.json();
 
-        if (response.ok && jsonResult.statusCode === 200) {
-            return jsonResult;
-        } else {
-            throw jsonResult.value.message;
-        }
-    } catch (error){
-        console.log(error);
-        throw constants.SOMETHING_GET_WRONG;
+    if (response.ok && jsonResult.statusCode === 200) {
+        return jsonResult;
+    } else {
+        throw jsonResult.value?.message;
     }
+
 }
 
 export const signOut = (token) => {

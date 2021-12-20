@@ -1,4 +1,4 @@
-import{ useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ProductList from '../Products/ProductList';
 
@@ -18,9 +18,7 @@ const Home = () => {
     }, []);
 
     return (
-        <section className="product-list">
-             <ProductList products={products} />
-        </section>
+        <ProductList products={products} />
     )
 }
 

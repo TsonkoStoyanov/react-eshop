@@ -1,10 +1,11 @@
 import ProductCard from "../../Common/ProductCard";
 
-const ProductList = ({products}) => {
+import './ProductList.css'
+
+const ProductList = ({ products }) => {
 
     return (
-        <div>
-            <ul>
+        <section className="section-products">            
             {products.length > 0
                 ? (
                     <ul className="products-list">
@@ -12,9 +13,8 @@ const ProductList = ({products}) => {
                     </ul>
                 ) 
                 : <p className="no-result">No products!</p>
-            }
-            </ul>
-        </div>
+            }            
+        </section>
     )
 }
 

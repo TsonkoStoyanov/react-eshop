@@ -23,8 +23,8 @@ const SignInForm = () => {
                 showNotification(constants.SIGNED_IN_SUCCESSFULLY, types.success);
                 navigate('/');
             })
-            .catch(err => {                           
-                showNotification(err, types.danger);
+            .catch(err => {                
+                showNotification(err || constants.SOMETHING_GET_WRONG, types.danger);
             });
     }
 
