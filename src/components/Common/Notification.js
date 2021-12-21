@@ -12,9 +12,9 @@ const Notification = () => {
     return (
         <div className={`notification ${notification.type}`} onClose={hideNotification}>            
             <div className='notification-header'>
-            <button className="notification-close-btn" onClick={hideNotification}>X</button>
+            <button className='notification-close-btn' onClick={hideNotification}>X</button>
             </div>
-            <div className="notification-body">                
+            <div className='notification-body'>                
                 {notification.message}                
             </div>
         </div>

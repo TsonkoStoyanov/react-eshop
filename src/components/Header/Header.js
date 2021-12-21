@@ -3,7 +3,7 @@ import Navigation from './Navigation';
 
 const Header = () => {
     return (
-        <header className="site-header">
+        <header className='site-header'>
            <Navigation/>
         </header>
     )

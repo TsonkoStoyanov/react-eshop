@@ -17,7 +17,7 @@ const useForm = (callback) => {
                         username: constants.REQUIRED_FIELD
                     })
                 } else {
-                    let newObj = omit(errors, "username");
+                    let newObj = omit(errors, 'username');
                     setErrors(newObj);
                 }
                 break;
@@ -29,7 +29,7 @@ const useForm = (callback) => {
                         password: constants.REQUIRED_FIELD
                     })
                 } else {
-                    let newObj = omit(errors, "password");
+                    let newObj = omit(errors, 'password');
                     setErrors(newObj);
 
                 }
@@ -42,7 +42,7 @@ const useForm = (callback) => {
                         email: constants.REQUIRED_FIELD
                     })
                 } else if (
-                    !new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(value)
+                    !new RegExp(/^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(value)
                 ) {
                     setErrors({
                         ...errors,
@@ -50,7 +50,7 @@ const useForm = (callback) => {
                     })
                 }
                 else {
-                    let newObj = omit(errors, "email");
+                    let newObj = omit(errors, 'email');
                     setErrors(newObj);
                 }
                 break;
@@ -68,7 +68,7 @@ const useForm = (callback) => {
                         name: constants.MIN_CHARACTERS_FIELD
                     })
                 } else {
-                    let newObj = omit(errors, "name");
+                    let newObj = omit(errors, 'name');
                     setErrors(newObj);
                 }
                 break;
@@ -86,7 +86,7 @@ const useForm = (callback) => {
                         description: constants.MIN_CHARACTERS_FIELD
                     })
                 } else {
-                    let newObj = omit(errors, "description");
+                    let newObj = omit(errors, 'description');
                     setErrors(newObj);
                 }
                 break;
@@ -99,7 +99,7 @@ const useForm = (callback) => {
                     })
                 }
                 else {
-                    let newObj = omit(errors, "imageUrl");
+                    let newObj = omit(errors, 'imageUrl');
                     setErrors(newObj);
                 }
                 break;
@@ -117,7 +117,7 @@ const useForm = (callback) => {
                         price: constants.MIN_PRICE
                     })
                 } else {
-                    let newObj = omit(errors, "price");
+                    let newObj = omit(errors, 'price');
                     setErrors(newObj);
                 }
                 break;

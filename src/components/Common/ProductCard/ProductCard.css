@@ -94,16 +94,17 @@
 
 .product-body ul li:hover .product-action,
 .product-body ul li:hover {
-	background-color: #2196F3;	
+	background-color: #8b9dc3;	
 	color: #fff;
 }
 
 .product-footer{
 	padding: 1em 0.5em;
+	min-height: 4em;
 }
 
 .product-footer .product-title {
-	font-size: 1em;
+	font-size: 0.9em;
 	margin-bottom: 0.5em;
 	color: gray;
 	font-weight: bold;
@@ -112,7 +113,7 @@
 .product-footer .product-price {
 	display: inline-block;
 	font-size: 1.2em;
-	color: #2196F3;
+	color: #da2127;
 	font-weight: bold;
 }
 
@@ -125,11 +126,18 @@
 
 .product-footer .product-old-price::after {
 	position: absolute;
-	content: "";
+	content: '';
 	top: 50%;
 	left: 0;
 	width: 100%;
 	height: 1px;
 	background-color: #444444;
 	transform: translateY(-50%);
+}
+
+@media (pointer: coarse) {
+    .product-body ul {
+		bottom: 10px;
+		opacity: 1;
+	}
 }

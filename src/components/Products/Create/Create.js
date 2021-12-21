@@ -1,4 +1,4 @@
-import CreateProductForm from "../../Forms/CreateForm/CreateProductForm";
+import CreateProductForm from '../../Forms/CreateForm/CreateProductForm';
 
 const Create = () => {
     return (

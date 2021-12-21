@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
+import { CartContextProvider } from './contexts/CartContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext'
 
@@ -19,24 +20,26 @@ import Edit from './components/Products/Edit';
 
 function App() {
   return (
-    <div className="site-wrapper">
+    <div className='site-wrapper'>
       <AuthProvider>
-        <NotificationProvider>
-          <Header />
-          <main className="site-content">
-            <Notification />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products/create" element={<Create/>} />      
-              <Route path="/products/details/:productId" element={<Details/>} />              
-              <Route path="/products/edit/:productId" element={<Edit/>} />              
-              <Route path="/signin" element={<SignIn />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/signout" element={<SignOut />} />
-            </Routes>
-          </main>
-          <Footer />
-        </NotificationProvider>
+        <CartContextProvider>
+          <NotificationProvider>
+            <Header />
+            <main className='site-content'>
+              <Notification />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/products/create' element={<Create />} />
+                <Route path='/products/details/:productId' element={<Details />} />
+                <Route path='/products/edit/:productId' element={<Edit />} />
+                <Route path='/signin' element={<SignIn />} />
+                <Route path='/signup' element={<SignUp />} />
+                <Route path='/signout' element={<SignOut />} />
+              </Routes>
+            </main>
+            <Footer />
+          </NotificationProvider>
+        </CartContextProvider>
       </AuthProvider>
     </div>
   );

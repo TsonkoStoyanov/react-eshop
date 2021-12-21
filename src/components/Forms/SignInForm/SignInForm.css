@@ -99,7 +99,7 @@
   }
   
   .field-label-wrap::after {
-    content: "";
+    content: '';
     box-sizing: border-box;
     width: 100%;
     height: 0;
@@ -183,11 +183,11 @@
   }
 
   .btn.btn-primary {
-    background-color: #2196F3;    
+    background-color: #4f6aa3;    
   }
 
   .btn.btn-primary:hover {
-    background-color: #0d8aee;    
+    background-color: #415d9b;    
   }
 
   .btn.btn-secondary {
@@ -214,8 +214,8 @@
   }
 
   .custom-link{
-    color: #2196F3;    
-    border: 1px solid #2196F3;
+    color: #344e83;    
+    border: 1px solid #344e83;
     text-decoration: none;
     border-radius: 5px;
     padding: .3em;
@@ -224,5 +224,5 @@
 
   .custom-link:hover{
     color: #fff;
-    background-color: #2196F3;
+    background-color: #344e83;
   }

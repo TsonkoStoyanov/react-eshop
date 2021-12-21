@@ -80,7 +80,7 @@
 
   .product-new-price {
     margin: 1.2em 0;
-    color: #ff3f40;
+    color: #da2127;
     font-size: 1.2em;
   }
 
@@ -94,7 +94,7 @@
   
   .price .product-old-price::after {
     position: absolute;
-    content: "";
+    content: '';
     top: 50%;
     left: 0;
     width: 100%;
