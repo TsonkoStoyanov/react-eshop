@@ -17,6 +17,8 @@ import Create from './components/Products/Create/Create';
 import Details from './components/Products/Details';
 import Edit from './components/Products/Edit';
 import Cart from './components/Cart';
+import IsAdminRoute from './components/Common/IsAdminRoute';
+import IsNotAdminRoute from './components/Common/IsNotAdminRoute';
 
 
 function App() {
@@ -30,13 +32,18 @@ function App() {
               <Notification />
               <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/products/create' element={<Create />} />
-                <Route path='/products/details/:productId' element={<Details />} />
-                <Route path='/products/edit/:productId' element={<Edit />} />
-                <Route path='/cart' element={<Cart />} />
                 <Route path='/signin' element={<SignIn />} />
                 <Route path='/signup' element={<SignUp />} />
                 <Route path='/signout' element={<SignOut />} />
+                <Route element={<IsNotAdminRoute />}>
+                  <Route path='/cart' element={<Cart />} />
+                </Route>
+                <Route element={<IsAdminRoute />}>
+                  <Route path='/products/create' element={<Create />} />
+                  <Route path='/products/details/:productId' element={<Details />} />
+                  <Route path='/products/edit/:productId' element={<Edit />} />
+                </Route>
+
               </Routes>
             </main>
             <Footer />
