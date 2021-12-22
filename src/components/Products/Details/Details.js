@@ -3,15 +3,18 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
+import { useCartContext } from '../../../contexts/CartContext';
 import * as productService from '../../../services/productService';
 import './Details.css';
+import { isInCart } from '../../../helpers';
 
 const Details = () => {
 
 	const { productId } = useParams();
 	const [product, setProduct] = useState({});
 	const { isAdmin } = useAuthContext();
-	const navigate = useNavigate();
+	const { cartItems, addProduct} = useCartContext();
+	const navigate = useNavigate();	
 
 	useEffect(() => {
 		productService.getOne(productId)
@@ -22,6 +25,7 @@ const Details = () => {
 			});
 	}, [productId]);
 
+	let isProductInCart = isInCart(productId, cartItems);
 	let discount = Number(product.discount);
     let price = Number(product.price);
     let priceWithDiscount = price - price * (discount / 100);
@@ -36,6 +40,12 @@ const Details = () => {
 			<Link to={`/products/edit/${productId}`} className='btn btn-secondary'><BsPencil /></Link>
 			<BsTrash className='btn btn-tertiary' onClick={onClickDeleteHandler} />
 		</div>
+	);
+
+	const userActions = (
+		isProductInCart 
+		? <Link className='btn btn-secondary' to='/cart'>Go to cart</Link> 
+		: <button className='btn btn-primary' disabled={isProductInCart} onClick={()=>addProduct (product) }>Add to cart</button>
 	);
 
 	return (
@@ -66,7 +76,7 @@ const Details = () => {
 
 				{isAdmin
 					? adminActions
-					: <button className='btn btn-primary'>Add to cart</button>
+					: userActions
 				}
 			</div>
 		</section>

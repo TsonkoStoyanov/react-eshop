@@ -1,0 +1,29 @@
+.bag-icon{
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.bag-icon svg{
+    width: 2em;
+    height: 2em;
+    margin-left: 2em;
+    margin-right: 1em;
+}
+
+.bag-items-count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 1em;
+    right: 1.5em;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    transform: translateX(50%);
+    color:#000;
+    font-size: 0.8em;
+}

@@ -1,0 +1,7 @@
+.cart-total{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 2em;
+    box-shadow: 4px 4px 25px -2px rgb(0 0 0 / 30%);       
+    width: 100%; 
+}

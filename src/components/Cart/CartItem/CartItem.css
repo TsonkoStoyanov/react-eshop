@@ -1,0 +1,14 @@
+.cart-item{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.cart-product-image{
+    position: relative;
+    width: 10%;
+}
+
+.cart-product-image img{
+    width: 100%;
+}
