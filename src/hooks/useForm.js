@@ -122,6 +122,18 @@ const useForm = (callback) => {
                 }
                 break;
 
+                case 'discount':                  
+                    if (Number(value) < 0) {
+                        setErrors({
+                            ...errors,
+                            discount: constants.MIN_DISCOUNT
+                        })
+                    } else {
+                        let newObj = omit(errors, 'discount');
+                        setErrors(newObj);
+                    }
+                    break;
+
             default:
                 break;
         }

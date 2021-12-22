@@ -13,5 +13,5 @@ export const calculateItemsCount = (cartItems) => {
 
 export const calculateTotal = (cartItems) => {    
     storeCart(cartItems);
-    return cartItems.reduce((total, prod) => total + (prod.quantity * prod.price - (prod.price * (prod.discount / 100))) , 0)
+    return cartItems.reduce((total, prod) => total + (prod.quantity * (prod.price - (prod.price * (prod.discount / 100)))) , 0)
 };

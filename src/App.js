@@ -35,15 +35,14 @@ function App() {
                 <Route path='/signin' element={<SignIn />} />
                 <Route path='/signup' element={<SignUp />} />
                 <Route path='/signout' element={<SignOut />} />
+                <Route element={<IsAdminRoute />}>
+                  <Route path='/products/create' element={<Create />} />
+                  <Route path='/products/edit/:productId' element={<Edit />} />
+                </Route>
+                <Route path='/products/details/:productId' element={<Details />} />
                 <Route element={<IsNotAdminRoute />}>
                   <Route path='/cart' element={<Cart />} />
                 </Route>
-                <Route element={<IsAdminRoute />}>
-                  <Route path='/products/create' element={<Create />} />
-                  <Route path='/products/details/:productId' element={<Details />} />
-                  <Route path='/products/edit/:productId' element={<Edit />} />
-                </Route>
-
               </Routes>
             </main>
             <Footer />

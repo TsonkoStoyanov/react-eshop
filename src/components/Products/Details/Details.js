@@ -2,19 +2,21 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 
+import ConfirmModal from '../../Common/ConfirmModal/ConfirmModal';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
+import { isInCart } from '../../../helpers';
 import * as productService from '../../../services/productService';
 import './Details.css';
-import { isInCart } from '../../../helpers';
 
 const Details = () => {
 
 	const { productId } = useParams();
 	const [product, setProduct] = useState({});
-	const { isAdmin } = useAuthContext();
-	const { cartItems, addProduct} = useCartContext();
-	const navigate = useNavigate();	
+	const [showConfirmModal, setShowConfirmModal] = useState(false);
+	const { isAdmin, user } = useAuthContext();
+	const { cartItems, addProduct } = useCartContext();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		productService.getOne(productId)
@@ -27,13 +29,23 @@ const Details = () => {
 
 	let isProductInCart = isInCart(productId, cartItems);
 	let discount = Number(product.discount);
-    let price = Number(product.price);
-    let priceWithDiscount = price - price * (discount / 100);
+	let price = Number(product.price);
+	let priceWithDiscount = price - price * (discount / 100);
 
 	const onClickDeleteHandler = (e) => {
-		console.log('delete handler');
-		navigate('/');
+		setShowConfirmModal(true);
 	}
+
+	const deleteHandler = () => {
+
+		productService.del(productId, user.token)
+			.then(() => {
+				navigate('/');
+			})
+			.finally(() => {
+				setShowConfirmModal(false);
+			});
+	};
 
 	const adminActions = (
 		<div className='details-actions'>
@@ -43,13 +55,13 @@ const Details = () => {
 	);
 
 	const userActions = (
-		isProductInCart 
-		? <Link className='btn btn-secondary' to='/cart'>Go to cart</Link> 
-		: <button className='btn btn-primary' disabled={isProductInCart} onClick={()=>addProduct (product) }>Add to cart</button>
+		isProductInCart
+			? <Link className='btn btn-secondary' to='/cart'>Go to cart</Link>
+			: <button className='btn btn-primary' disabled={isProductInCart} onClick={() => addProduct(product)}>Add to cart</button>
 	);
 
 	return (
-		<section className='product'>
+		<>		<section className='product'>
 			<div className='product-photo'>
 				<div className='photo-container'>
 					{Number(product.discount) !== 0 ? <span className='discount'>{product.discount}% off</span> : ''}
@@ -80,6 +92,8 @@ const Details = () => {
 				}
 			</div>
 		</section>
+			<ConfirmModal show={showConfirmModal} onClose={() => setShowConfirmModal(false)} onSave={deleteHandler} />
+		</>
 	)
 }
 

@@ -102,6 +102,7 @@ const CreateProductForm = () => {
                         <span className='field-label'>Discount</span>
                     </span>
                 </label>                
+                <span className={errors.discount ? 'field-error show' : 'field-error'}>{errors.discount}</span>
             </div>
 
             <div className='custom-field-input'>

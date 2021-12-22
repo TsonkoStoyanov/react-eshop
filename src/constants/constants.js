@@ -9,5 +9,6 @@ export const PRODUCT_UPDATED = 'Successfully update product.';
 export const REQUIRED_FIELD = 'The field is required.';
 export const MIN_CHARACTERS_FIELD = 'The field length must be 3 charachter.';
 export const MIN_PRICE = 'Price must be positive number.';
+export const MIN_DISCOUNT = 'Discount must be positive number.';
 export const VALID_EMAIL = 'Enter a valid email address.';
 
