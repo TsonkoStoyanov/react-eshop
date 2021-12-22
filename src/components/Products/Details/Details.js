@@ -3,10 +3,12 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 
 import ConfirmModal from '../../Common/ConfirmModal/ConfirmModal';
+import { useNotificationContext, types } from '../../../contexts/NotificationContext';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
 import { isInCart } from '../../../helpers';
 import * as productService from '../../../services/productService';
+import * as constants from '../../../constants/constants';
 import './Details.css';
 
 const Details = () => {
@@ -16,6 +18,7 @@ const Details = () => {
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
 	const { isAdmin, user } = useAuthContext();
 	const { cartItems, addProduct } = useCartContext();
+	const { showNotification } = useNotificationContext();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -40,6 +43,7 @@ const Details = () => {
 
 		productService.del(productId, user.token)
 			.then(() => {
+				showNotification(`${constants.PRODUCT_DELETED} ${product.name}`, types.success);
 				navigate('/');
 			})
 			.finally(() => {
