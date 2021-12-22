@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BsBag, BsBagFill, BsHeart, BsHeartFill, BsPencil, BsSearch } from 'react-icons/bs';
+import { BsBag, BsBagFill, BsPencil, BsSearch } from 'react-icons/bs';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
@@ -31,11 +31,6 @@ const ProductCard = ({ product }) => {
                 ? <Link to='/cart'><BsBagFill className='action-icon' /></Link>
                 : <BsBag className='action-icon product-action' onClick={()=> addProduct(product)} />
             }</li>
-
-            {isAuthenticated
-                ? <li><BsHeart className='action-icon product-action' onClick={onClickLikeHandler} /></li>
-                : <li><Link to='/signin'><BsHeart className='action-icon' /></Link></li>
-            }
         </>
     );
 
