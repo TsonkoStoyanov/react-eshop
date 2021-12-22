@@ -2,6 +2,33 @@
     background-color: #fff;
     border-radius: 5px;
     padding: 2em;
-    box-shadow: 4px 4px 25px -2px rgb(0 0 0 / 30%);       
-    width: 100%; 
+    box-shadow: 4px 4px 25px -2px rgb(0 0 0 / 30%);
+    flex: 1 1 20%;              
+    max-height: 18em;
+}
+
+.total-info{
+    display: flex;
+    gap:1em;
+    flex-direction: column;
+    margin: 2em 0;   
+    font-size: 1.2em; 
+}
+
+.items-count,
+.total{
+    color: gray;    
+}
+
+.items-count strong,
+.total strong{
+    color: black;
+}
+
+.cart-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    max-width: 20em;
+    margin: 0 auto;    
 }

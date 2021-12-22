@@ -9,7 +9,8 @@ const cartFromStorage = localStorage.getItem('cart');
 const cart = cartFromStorage ? JSON.parse(cartFromStorage) : [];
 const initialState = {cartItems: cart, itemsCount: calculateItemsCount(cart), total: calculateTotal(cart) };
 
-export const CartContextProvider = ({ children }) => {    
+export const CartContextProvider = ({ children }) => {  
+      
     const [state, dispatch] = useReducer(cartReducer, initialState);
 
     const addProduct = (product) => dispatch({ type: 'ADD_PRODUCT', payload: product });

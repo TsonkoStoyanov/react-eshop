@@ -6,7 +6,7 @@ import CartTotal from './CartTotal';
 
 const Cart = () => {
 
-    const { cartItems, removeProduct, increaseProductQty, decreaseProductQty } = useCartContext();
+    const { cartItems, removeProduct, increaseProductQty, decreaseProductQty, total, clearCart, itemsCount } = useCartContext();
 
     const emptycart = (<div className='empty-cart'> No products in cart</div>);
 
@@ -18,7 +18,7 @@ const Cart = () => {
 
     return (
         <section className='cart'>
-            <div className='cart-container'>
+            <div className='cart-products-container'>
                 <h1>Cart</h1>
                 {
                     cartItems.length === 0
@@ -26,7 +26,9 @@ const Cart = () => {
                         : cartProductList
                 }
             </div>
-            <CartTotal />
+           { itemsCount > 0  
+           ? <CartTotal clearCart={clearCart} itemsCount={itemsCount} total={total} />
+           : null }
         </section>
     )
 }

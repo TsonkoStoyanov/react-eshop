@@ -2,13 +2,20 @@
     display: flex;
     flex-wrap: wrap;
     gap:1em;
-
 }
 
-.cart-container{
+.empty-cart{
+    margin: 2em 0;
+}
+
+.cart-products-container{
     background-color: #fff;
     border-radius: 5px;
-    padding: 2em;
+    padding: 2em 3em;
     box-shadow: 4px 4px 25px -2px rgb(0 0 0 / 30%);
-    width: 100%;    
+    flex: 1 1 65%;  
+}
+
+.cart-products-list {
+    margin-top: 1em;
 }

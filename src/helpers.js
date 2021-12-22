@@ -7,10 +7,11 @@ export const storeCart = (cartItems) => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-export const calculateItemsCount = (cartItems) => {
+export const calculateItemsCount = (cartItems) => {    
     return cartItems.reduce((total, prod) => total + prod.quantity , 0)
 };
 
-export const calculateTotal = (cartItems) => {
-    return cartItems.reduce((total, prod) => total + prod.price - (prod.price * (prod.discount / 100)) , 0)
+export const calculateTotal = (cartItems) => {    
+    storeCart(cartItems);
+    return cartItems.reduce((total, prod) => total + (prod.quantity * prod.price - (prod.price * (prod.discount / 100))) , 0)
 };

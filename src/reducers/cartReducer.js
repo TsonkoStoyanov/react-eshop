@@ -11,8 +11,6 @@ const cartReducer = (state, action) => {
                 });
             }
 
-            storeCart(state.cartItems);
-
             return {
                 ...state,
                 cartItems: [...state.cartItems],
@@ -22,9 +20,7 @@ const cartReducer = (state, action) => {
 
         case 'INCREASE':
             const increaseIndex = state.cartItems.findIndex(p => p.id === action.payload);
-            state.cartItems[increaseIndex].quantity++;
-            
-            storeCart(state.cartItems);
+            state.cartItems[increaseIndex].quantity++;                    
 
             return {
                 ...state,
@@ -40,9 +36,7 @@ const cartReducer = (state, action) => {
 
             if (product.quantity > 1) {
                 product.quantity--;
-            }
-            
-            storeCart(state.cartItems);
+            }            
 
             return {
                 ...state,
@@ -54,8 +48,6 @@ const cartReducer = (state, action) => {
         case 'REMOVE_PRODUCT':
             const filtredCardItems = state.cartItems.filter(p => p.id !== action.payload);
             
-            storeCart(filtredCardItems);
-
             return {
                 ...state,
                 cartItems: [...filtredCardItems],
@@ -64,8 +56,7 @@ const cartReducer = (state, action) => {
             };
 
         case 'CLEAR_CART':
-            storeCart();
-
+            storeCart([]);
             return {
                 cartItems: [],
                 itemsCount: 0, 
