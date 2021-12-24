@@ -17,8 +17,8 @@ import Create from './components/Products/Create/Create';
 import Details from './components/Products/Details';
 import Edit from './components/Products/Edit';
 import Cart from './components/Cart';
-import IsAdminRoute from './components/Common/IsAdminRoute';
-import IsNotAdminRoute from './components/Common/IsNotAdminRoute';
+import IsAdminRoute from './components/Common/GuardedRoutes/IsAdminRoute';
+import IsNotAdminRoute from './components/Common/GuardedRoutes/IsNotAdminRoute';
 
 
 function App() {

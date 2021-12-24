@@ -23,24 +23,26 @@ export const AuthProvider = ({ children }) => {
         setUser(initialAuthState);
     };
 
+    
     const isAdmin = user.role === 'Admin' ? true : false;
     const isAuthenticated = user.userId ? true : false;
 
+    const contexValues = {
+        user,
+        signIn,
+        signOut,
+        isAuthenticated: isAuthenticated,
+        isAdmin: isAdmin
+    }
+
+
     return (
-        <AuthContext.Provider value={{
-            user,
-            signIn,
-            signOut,
-            isAuthenticated: isAuthenticated,
-            isAdmin: isAdmin
-        }}>
+        <AuthContext.Provider value={ contexValues }>
             {children}
         </AuthContext.Provider>
     );
 };
 
 export const useAuthContext = () => {
-    const authState = useContext(AuthContext);
-
-    return authState;
+    return  useContext(AuthContext);    
 }

@@ -1,11 +1,9 @@
 import { createContext, useContext, useState, useCallback } from 'react';
 
-export const NotificationContext = createContext();
+const NotificationContext = createContext();
 
 export const types = {
     error: 'danger',
-    warn: 'warning',
-    info: 'info',
     success: 'success',
 };
 
@@ -20,20 +18,25 @@ export const NotificationProvider = ({ children }) => {
 
         setTimeout(() => {
             setNotification(initialNotificationState);
-        }, 5000);
+        }, 3000);
+        
     }, []);
 
     const hideNotification = useCallback(() => setNotification(initialNotificationState), [])
 
+    const contexValues = {
+        notification, 
+        showNotification, 
+        hideNotification,
+    }
+
     return (
-        <NotificationContext.Provider value={{notification, showNotification, hideNotification}}>
+        <NotificationContext.Provider value={ contexValues }>
             {children}
         </NotificationContext.Provider>
     )
 };
 
 export const useNotificationContext = () => {
-    const state = useContext(NotificationContext);
-
-    return state;
+    return  useContext(NotificationContext);    
 };

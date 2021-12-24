@@ -1,4 +1,4 @@
-import ProductCard from '../../Common/ProductCard';
+import ProductCard from '../ProductCard';
 
 import './ProductList.css'
 

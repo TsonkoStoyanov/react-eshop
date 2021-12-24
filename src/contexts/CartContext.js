@@ -3,7 +3,7 @@ import React, { createContext, useReducer, useContext } from 'react';
 import { calculateItemsCount, calculateTotal } from '../helpers';
 import cartReducer from '../reducers/cartReducer';
 
-export const CartContext = createContext();
+const CartContext = createContext();
 
 const cartFromStorage = localStorage.getItem('cart');
 const cart = cartFromStorage ? JSON.parse(cartFromStorage) : [];
@@ -30,9 +30,7 @@ export const CartContextProvider = ({ children }) => {
 
     return (
         <CartContext.Provider value={ contexValues }>
-            {
-                children
-            }
+            {children}
         </CartContext.Provider>
     );
 }

@@ -1,39 +1,38 @@
 .notification {
     position: absolute;
-    max-width: 20em;
-    min-height: 3em;
-    top: 50px;
-    right: 40px;
+    min-width: 18em;
+    max-width: 25em;
+    min-height: 3em;    
+    top: 20px;
+    right: 60px;
     border: 1px solid gray;    
     border-radius: 5px;
-    padding: 0.5em 1em 1em 1em;
-    color: #fff;
-    font-size: 1.2em;
+    padding: 0.8em;
+    color: #fff;    
     box-shadow: 0 7px 14px rgba(0, 0, 0, 0.18), 0 5px 5px rgba(0, 0, 0, 0.12);
     z-index: 998;
 }
 
 .notification-header{
-    display: flex;
-    align-self: flex-end;
+    display: flex;    
+    text-transform: uppercase;    
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #fff;    
 }
 
 .notification-close-btn{        
     margin-left: auto;
     color: #fff;
     cursor: pointer;
-    width: 1em;
-    height: 1em;
+    font-size: 1em;
     background-color: transparent;
     border: none;
     font-weight: bold;    
   }
 
   .notification-body{      
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 0.5em;
+        text-align: left;
+        padding: 0.5em 0;      
   }
 
 .notification.danger{

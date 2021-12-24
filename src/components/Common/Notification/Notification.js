@@ -1,4 +1,5 @@
-import { useNotificationContext } from '../../contexts/NotificationContext';
+import { useNotificationContext } from '../../../contexts/NotificationContext';
+import { BsXLg } from 'react-icons/bs';
 
 import './Notification.css';
 
@@ -10,9 +11,10 @@ const Notification = () => {
     }
 
     return (
-        <div className={`notification ${notification.type}`} onClose={hideNotification}>            
+        <div className={`notification ${notification.type}`}>                    
             <div className='notification-header'>
-            <button className='notification-close-btn' onClick={hideNotification}>X</button>
+             <span className='notification-type'>{notification.type} </span>   
+            <BsXLg className='notification-close-btn' onClick={hideNotification} />
             </div>
             <div className='notification-body'>                
                 {notification.message}                

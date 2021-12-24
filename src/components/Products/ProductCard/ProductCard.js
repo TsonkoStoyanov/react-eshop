@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { BsBag, BsBagFill, BsPencil, BsSearch } from 'react-icons/bs';
+import { BsBag, BsBagFill, BsHeart, BsHeartFill, BsPencil, BsSearch } from 'react-icons/bs';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
-import './ProductCard.css';
 import { isInCart } from '../../../helpers';
+import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
     const { isAuthenticated, isAdmin } = useAuthContext();
@@ -22,15 +22,20 @@ const ProductCard = ({ product }) => {
     }
 
     const adminActions = (
-            <li><Link to={productEdit}><BsPencil className='action-icon' /></Link></li>    
+        <li><Link to={productEdit}><BsPencil className='action-icon' /></Link></li>
     );
 
     const userActions = (
-        <>                        
+        <>
             <li>{isProductInCart
                 ? <Link to='/cart'><BsBagFill className='action-icon' /></Link>
-                : <BsBag className='action-icon product-action' onClick={()=> addProduct(product)} />
+                : <BsBag className='action-icon product-action' onClick={() => addProduct(product)} />
             }</li>
+
+            {isAuthenticated
+                ? <li><BsHeart className='action-icon product-action' onClick={onClickLikeHandler} /></li>
+                : <li><Link to='/signin'><BsHeart className='action-icon' /></Link></li>
+            }
         </>
     );
 
@@ -43,7 +48,7 @@ const ProductCard = ({ product }) => {
                 {discount !== 0 ? <span className='discount'>{discount}% off</span> : null}
                 {product.status && <span className='status'>{product.status}</span>}
                 <ul>
-                <li><Link to={productDetails}><BsSearch className='action-icon' /></Link></li>
+                    <li><Link to={productDetails}><BsSearch className='action-icon' /></Link></li>
                     {isAdmin ? adminActions : userActions}
                 </ul>
             </div>
