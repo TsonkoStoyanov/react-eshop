@@ -4,6 +4,7 @@ export const SOMETHING_GET_WRONG = 'Something get wrong.';
 export const SIGNED_IN_SUCCESSFULLY = 'You signed in successfully';
 export const SIGNED_OUt_SUCCESSFULLY = 'Successfully signed out.';
 export const NOT_AUTHORIZED = 'Not Authorised.';
+export const NOT_AUTHENTICATED = 'Not Authenticated.';
 export const PRODUCT_CREATED = 'Successfully create product.';
 export const PRODUCT_UPDATED = 'Successfully update product.';
 export const PRODUCT_DELETED = 'Successfully delete product with name';

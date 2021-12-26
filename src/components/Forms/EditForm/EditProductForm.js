@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 
-import { useAuthContext } from '../../../contexts/AuthContext';
 import { useNotificationContext, types } from '../../../contexts/NotificationContext';
 
 import useForm from '../../../hooks/useForm';
@@ -16,8 +15,7 @@ import * as constants from '../../../constants/constants';
 const CreateProductForm = () => {
 
     const { productId } = useParams();
-    const [product, setProduct] = useState({});
-    const { user} = useAuthContext();
+    const [product, setProduct] = useState({});    
     const navigate = useNavigate();    
     const { showNotification } = useNotificationContext();
 
@@ -41,13 +39,13 @@ const CreateProductForm = () => {
             discount: values.discount ? values.discount : product.discount,
         }
 
-        productService.update(productId, updatedProduct, user.token)
+        productService.update(productId, updatedProduct)
         .then((result) => {            
             showNotification(constants.PRODUCT_UPDATED, types.success);
             navigate('/');
         })
         .catch(err => {                
-            showNotification(err, types.danger);
+            showNotification(err.message, types.danger);
         });
     }
 

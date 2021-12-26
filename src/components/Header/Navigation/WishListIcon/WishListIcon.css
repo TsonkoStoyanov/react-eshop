@@ -1,16 +1,15 @@
-.bag-icon{
+.wishlist-icon{
     position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    cursor: pointer;    
 }
 
-.bag-icon svg{
+.wishlist-icon svg{
     width: 2em;
-    height: 2em;        
+    height: 2em;
+    padding-top: 0.5em;
 }
 
-.bag-items-count{
+.wishlist-items-count{
     display: flex;
     align-items: center;
     justify-content: center;

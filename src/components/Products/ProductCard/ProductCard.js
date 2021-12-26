@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BsBag, BsBagFill, BsHeart, BsHeartFill, BsPencil, BsSearch } from 'react-icons/bs';
+import { BsBag, BsBagFill, BsHeart, BsPencil, BsSearch } from 'react-icons/bs';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
@@ -19,12 +19,12 @@ const ProductCard = ({ product }) => {
 
     const onClickLikeHandler = (e) => {
         console.log('like-handler');
-    }
+    }    
 
     const adminActions = (
         <li><Link to={productEdit}><BsPencil className='action-icon' /></Link></li>
     );
-
+    
     const userActions = (
         <>
             <li>{isProductInCart

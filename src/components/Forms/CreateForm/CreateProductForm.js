@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
-
-import { useAuthContext } from '../../../contexts/AuthContext';
 import { useNotificationContext, types } from '../../../contexts/NotificationContext';
 
 import useForm from '../../../hooks/useForm';
@@ -11,9 +9,7 @@ import './CreateProductForm.css';
 import * as productService from '../../../services/productService';
 import * as constants from '../../../constants/constants';
 
-const CreateProductForm = () => {
-
-    const { user } = useAuthContext();
+const CreateProductForm = () => {    
     const navigate = useNavigate();
     const { showNotification } = useNotificationContext();
 
@@ -27,7 +23,7 @@ const CreateProductForm = () => {
             status: values.status,
         }
 
-        productService.create(product, user.token)
+        productService.create(product)
             .then((result) => {
                 showNotification(constants.PRODUCT_CREATED, types.success);
                 navigate('/');

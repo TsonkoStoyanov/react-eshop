@@ -77,13 +77,18 @@
     color: #a6a6a6;
   }
 
+  .prices{
+    display: flex;
+    align-items: center;
+  }
+
   .product-new-price {
     margin: 1.2em 0;
     color: #da2127;
     font-size: 1.2em;
   }
 
-  .price .product-old-price {
+  .prices .product-old-price {
     position: relative;
     padding: 0 7px;
     margin-right: 2px;
@@ -91,7 +96,7 @@
     font-size: 1.2em;
   }
   
-  .price .product-old-price::after {
+  .prices .product-old-price::after {
     position: absolute;
     content: '';
     top: 50%;
@@ -102,7 +107,7 @@
     transform: translateY(-50%);
   }
 
-  .price span {
+  .prices span {
     padding-left: 0.15em;
     font-size: 2.9em;
   }

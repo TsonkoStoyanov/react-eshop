@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { CartContextProvider } from './contexts/CartContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext'
+import { WishListProvider } from './contexts/WishListContext'
 
 import './App.css';
 
@@ -26,27 +27,29 @@ function App() {
     <div className='site-wrapper'>
       <AuthProvider>
         <CartContextProvider>
-          <NotificationProvider>
-            <Header />
-            <main className='site-content'>
-              <Notification />
-              <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/signin' element={<SignIn />} />
-                <Route path='/signup' element={<SignUp />} />
-                <Route path='/signout' element={<SignOut />} />
-                <Route element={<IsAdminRoute />}>
-                  <Route path='/products/create' element={<Create />} />
-                  <Route path='/products/edit/:productId' element={<Edit />} />
-                </Route>
-                <Route path='/products/details/:productId' element={<Details />} />
-                <Route element={<IsNotAdminRoute />}>
-                  <Route path='/cart' element={<Cart />} />
-                </Route>
-              </Routes>
-            </main>
-            <Footer />
-          </NotificationProvider>
+          <WishListProvider>
+            <NotificationProvider>
+              <Header />
+              <main className='site-content'>
+                <Notification />
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/signin' element={<SignIn />} />
+                  <Route path='/signup' element={<SignUp />} />
+                  <Route path='/signout' element={<SignOut />} />
+                  <Route element={<IsAdminRoute />}>
+                    <Route path='/products/create' element={<Create />} />
+                    <Route path='/products/edit/:productId' element={<Edit />} />
+                  </Route>
+                  <Route path='/products/details/:productId' element={<Details />} />
+                  <Route element={<IsNotAdminRoute />}>
+                    <Route path='/cart' element={<Cart />} />
+                  </Route>
+                </Routes>
+              </main>
+              <Footer />
+            </NotificationProvider>
+          </WishListProvider>
         </CartContextProvider>
       </AuthProvider>
     </div>

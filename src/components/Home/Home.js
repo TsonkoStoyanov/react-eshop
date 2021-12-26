@@ -13,7 +13,7 @@ const Home = () => {
                 setProducts(result);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.message);
             })
     }, []);
 

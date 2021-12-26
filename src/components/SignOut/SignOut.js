@@ -8,20 +8,22 @@ import * as authService from '../../services/authService';
 import * as constants from '../../constants/constants';
 
 const SignOut = () => {
-    const { user, signOut } = useAuthContext();
+    const { signOut, isAuthenticated } = useAuthContext();
     const { showNotification } = useNotificationContext();
     const navigate = useNavigate();
 
     useEffect(() => {
-        authService.signOut(user.token)
-            .then(() => {
-                signOut();
-                showNotification(constants.SIGNED_OUt_SUCCESSFULLY, types.success);
-                navigate('/');
-            }).catch(err => {
-                console.log(err);
-            });
-    }, []);
+        if (isAuthenticated) {
+            authService.signOut()
+                .then(() => {
+                    signOut();
+                    showNotification(constants.SIGNED_OUt_SUCCESSFULLY, types.success);
+                    navigate('/');
+                }).catch(err => {
+                    console.log(err.message);
+                });
+        }
+    }, [signOut, navigate, showNotification, isAuthenticated]);
 
     return null;
 

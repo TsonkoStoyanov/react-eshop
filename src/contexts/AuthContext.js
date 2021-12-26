@@ -10,7 +10,7 @@ const initialAuthState = {
     role: '',
 };
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useLocalStorage('user', initialAuthState);
@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
     const signOut = () => {
         setUser(initialAuthState);
     };
-
     
     const isAdmin = user.role === 'Admin' ? true : false;
     const isAuthenticated = user.userId ? true : false;
@@ -34,7 +33,6 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: isAuthenticated,
         isAdmin: isAdmin
     }
-
 
     return (
         <AuthContext.Provider value={ contexValues }>

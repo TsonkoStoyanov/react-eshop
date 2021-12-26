@@ -16,7 +16,7 @@ const Details = () => {
 	const { productId } = useParams();
 	const [product, setProduct] = useState({});
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
-	const { isAdmin, user } = useAuthContext();
+	const { isAdmin } = useAuthContext();
 	const { cartItems, addProduct } = useCartContext();
 	const { showNotification } = useNotificationContext();
 	const navigate = useNavigate();
@@ -24,16 +24,16 @@ const Details = () => {
 	useEffect(() => {
 		productService.getOne(productId)
 			.then((product) => {
-				setProduct(product.value);
-			}).catch(err => {
+				setProduct(product);
+			}).catch(err => {				
 				console.log(err);
 			});
 	}, [productId]);
 
-	let isProductInCart = isInCart(productId, cartItems);
-	let discount = Number(product.discount);
 	let price = Number(product.price);
-	let priceWithDiscount = price - price * (discount / 100);
+	const discount = Number(product.discount);
+	const isProductInCart = isInCart(productId, cartItems);
+	const priceWithDiscount = price - price * (discount / 100);
 
 	const onClickDeleteHandler = (e) => {
 		setShowConfirmModal(true);
@@ -41,7 +41,7 @@ const Details = () => {
 
 	const deleteHandler = () => {
 
-		productService.del(productId, user.token)
+		productService.del(productId)
 			.then(() => {
 				showNotification(`${constants.PRODUCT_DELETED} ${product.name}`, types.success);
 				navigate('/');
@@ -65,37 +65,38 @@ const Details = () => {
 	);
 
 	return (
-		<>		<section className='product'>
-			<div className='product-photo'>
-				<div className='photo-container'>
-					{Number(product.discount) !== 0 ? <span className='discount'>{product.discount}% off</span> : ''}
-					{product.status && <span className='status'>{product.status}</span>}
-					<div className='photo-main'>
-						<img src={product.imageUrl} alt={product.name} />
+		<>
+			<section className='product'>
+				<div className='product-photo'>
+					<div className='photo-container'>
+						{discount !== 0 ? <span className='discount'>{discount}% off</span> : ''}
+						{product.status && <span className='status'>{product.status}</span>}
+						<div className='photo-main'>
+							<img src={product.imageUrl} alt={product.name} />
+						</div>
 					</div>
 				</div>
-			</div>
-			<div className='product-info'>
-				<div className='title'>
-					<h1>{product.name}</h1>
-				</div>
-				<div className='price'>
-					{Number(product.discount) !== 0
-						? <span className='product-old-price'>{price}$</span>
-						: ''}
-					<span className='product-new-price'>{priceWithDiscount}$</span>
-				</div>
-				<div className='description'>
-					<h3>PRODUCT DESCRIPTION</h3>
-					<p>{product.description}</p>
-				</div>
+				<div className='product-info'>
+					<div className='title'>
+						<h1>{product.name}</h1>
+					</div>
+					<div className='prices'>
+						{discount !== 0
+							? <span className='product-old-price'>{price}$</span>
+							: ''}
+						<span className='product-new-price'>{priceWithDiscount}$</span>
+					</div>
+					<div className='description'>
+						<h3>PRODUCT DESCRIPTION</h3>
+						<p>{product.description}</p>
+					</div>
 
-				{isAdmin
-					? adminActions
-					: userActions
-				}
-			</div>
-		</section>
+					{isAdmin
+						? adminActions
+						: userActions
+					}
+				</div>
+			</section>
 			<ConfirmModal show={showConfirmModal} onClose={() => setShowConfirmModal(false)} onSave={deleteHandler} />
 		</>
 	)

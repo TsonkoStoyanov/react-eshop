@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { debounce } from 'lodash';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useNotificationContext, types } from '../../../contexts/NotificationContext';
@@ -38,7 +37,7 @@ const SignInForm = () => {
                 <div className='custom-field-input'>
                     <label className='field field-border-bottom'>
                         <input type='text' className='field-input' name='username' autoComplete='on' placeholder=' ' 
-                        onChange={debounce(handleChange, 200)} onBlur={handleChange} />
+                        onChange={handleChange} onBlur={handleChange} />
                         <span className='field-label-wrap'>
                             <span className='field-label'>Username</span>
                         </span>
@@ -49,7 +48,7 @@ const SignInForm = () => {
                 <div className='custom-field-input'>
                     <label className='field field-border-bottom'>
                         <input type='password' className='field-input' name='password' autoComplete='on' placeholder=' ' 
-                        onChange={debounce(handleChange, 200)} onBlur={handleChange} />
+                        onChange={handleChange} onBlur={handleChange} />
                         <span className='field-label-wrap'>
                             <span className='field-label'>Password</span>
                         </span>

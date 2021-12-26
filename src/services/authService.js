@@ -1,4 +1,5 @@
 import * as constants from '../constants/constants';
+import { getToken } from '../helpers';
 
 export const signIn = async (username, password) => {
         let response = await fetch(`${constants.BASE_URL}/signIn`, {
@@ -7,7 +8,7 @@ export const signIn = async (username, password) => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({ username, password })
-        });
+        });        
 
         let jsonResult = await response.json();
 
@@ -24,7 +25,7 @@ export const signUp = async (username, email, password) => {
     let response = await fetch(`${constants.BASE_URL}/signUp`, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
         },
         body: JSON.stringify({ username, email, password })
     });
@@ -36,13 +37,12 @@ export const signUp = async (username, email, password) => {
     } else {
         throw jsonResult.value?.message;
     }
+};
 
-}
-
-export const signOut = (token) => {
+export const signOut = () => {
     return fetch(`${constants.BASE_URL}/signOut`, {
         headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${getToken()}`,
         }
     });
 };

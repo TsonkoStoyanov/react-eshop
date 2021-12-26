@@ -34,12 +34,12 @@ nav{
         color: #fff;      
         display: flex;
         align-items: center; 
+        padding: 0 1em;
     }
 
     .site-nav .nav-link{
         text-decoration: none;
-        color: #fff;
-        padding: 1.5em 1em;
+        color: #fff;        
     }
 
     .site-nav .nav-link :hover{
