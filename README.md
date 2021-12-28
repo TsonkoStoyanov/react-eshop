@@ -1,3 +1,5 @@
+softuni-react-eshop.netlify.app
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6852afdf-9491-48eb-ae9a-faf9bf4e4f05/deploy-status)](https://app.netlify.com/sites/softuni-react-eshop/deploys)
 
 # Getting Started with Create React App
