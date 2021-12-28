@@ -5,6 +5,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 const initialAuthState = {
     userId: '',
     username: '',
+    email:'',
     token: '',
     expiration: '',
     role: '',

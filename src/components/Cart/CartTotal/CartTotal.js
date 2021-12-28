@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+
+import { useAuthContext } from '../../../contexts/AuthContext';
+import StripeCheckout from '../../StripeCheckout/StripeCheckout';
 import './CartTotal.css'
 
 const CartTotal = ({ clearCart, itemsCount, total }) => {
+    const { isAuthenticated } = useAuthContext();
+
     return (
         <aside className='cart-total'>
             <h2>Total</h2>
@@ -10,7 +14,7 @@ const CartTotal = ({ clearCart, itemsCount, total }) => {
                 <p className='total'>Total sum to pay: <strong>{total}$</strong></p>
             </div>
             <div className='cart-buttons'>
-                <Link className='btn btn-primary' to='/chekout'>Proced to chekout</Link>
+                { isAuthenticated && <StripeCheckout/>}
                 <button className='btn btn-secondary' onClick={() => clearCart()}>Clear cart</button>
             </div>
         </aside>

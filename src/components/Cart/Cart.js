@@ -1,8 +1,8 @@
 import { useCartContext } from '../../contexts/CartContext';
 
-import './Cart.css';
 import CartItem from './CartItem';
 import CartTotal from './CartTotal';
+import './Cart.css';
 
 const Cart = () => {
 

@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 import { CartContextProvider } from './contexts/CartContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -20,12 +22,14 @@ import Cart from './components/Cart';
 import IsAdminRoute from './components/Common/GuardedRoutes/IsAdminRoute';
 import IsNotAdminRoute from './components/Common/GuardedRoutes/IsNotAdminRoute';
 
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
 
 function App() {
   return (
     <div className='site-wrapper'>
       <AuthProvider>
-        <CartContextProvider>          
+        <CartContextProvider>
+          <Elements stripe={stripePromise}>
             <NotificationProvider>
               <Header />
               <main className='site-content'>
@@ -46,7 +50,8 @@ function App() {
                 </Routes>
               </main>
               <Footer />
-            </NotificationProvider>          
+            </NotificationProvider>
+          </Elements>
         </CartContextProvider>
       </AuthProvider>
     </div>
