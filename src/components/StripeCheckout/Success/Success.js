@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
+
 import { useNavigate } from 'react-router-dom';
-import { useCartContext } from '../../contexts/CartContext';
+import { useCartContext } from '../../../contexts/CartContext';
 
 const Success = () => {  
   const { cartItems, clearCart} = useCartContext();  
@@ -12,9 +14,6 @@ const Success = () => {
   return (    
       <section className='checkout'>
         <h1>Thank you for your order</h1>
-        <p>We are currently processing your order and
-          will send you a confirmation email shortly
-        </p>
         <div>
           <button className='btn btn-primary'
             onClick={() => navigate('/')}>
