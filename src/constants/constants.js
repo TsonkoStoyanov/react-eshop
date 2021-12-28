@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://localhost:7131/api';
+export const BASE_URL = 'https://reactshopapi.azurewebsites.net/api';
 export const INVALID_CREDENTIALS = 'Invalid credentials.';
 export const SOMETHING_GET_WRONG = 'Something get wrong.';
 export const SIGNED_IN_SUCCESSFULLY = 'You signed in successfully';
