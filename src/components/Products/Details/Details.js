@@ -25,9 +25,13 @@ const Details = () => {
 		productService.getOne(productId)
 			.then((product) => {
 				setProduct(product);
-			}).catch(err => {				
+			}).catch(err => {
 				console.log(err);
 			});
+
+		return () => {
+			setProduct({});
+		};
 	}, [productId]);
 
 	let price = Number(product.price);

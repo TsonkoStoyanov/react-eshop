@@ -15,14 +15,14 @@ import * as constants from '../../../constants/constants';
 const CreateProductForm = () => {
 
     const { productId } = useParams();
-    const [product, setProduct] = useState({});    
-    const navigate = useNavigate();    
+    const [ product, setProduct ] = useState({});    
     const { showNotification } = useNotificationContext();
+    const navigate = useNavigate();    
 
     useEffect(() => {
 		productService.getOne(productId)
 			.then((product) => {
-				setProduct(product.value);
+				setProduct(product);
 			}).catch(err => {
 				console.log(err);
 			});

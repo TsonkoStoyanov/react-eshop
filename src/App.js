@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { CartContextProvider } from './contexts/CartContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext'
-import { WishListProvider } from './contexts/WishListContext'
 
 import './App.css';
 
@@ -26,8 +25,7 @@ function App() {
   return (
     <div className='site-wrapper'>
       <AuthProvider>
-        <CartContextProvider>
-          <WishListProvider>
+        <CartContextProvider>          
             <NotificationProvider>
               <Header />
               <main className='site-content'>
@@ -48,8 +46,7 @@ function App() {
                 </Routes>
               </main>
               <Footer />
-            </NotificationProvider>
-          </WishListProvider>
+            </NotificationProvider>          
         </CartContextProvider>
       </AuthProvider>
     </div>

@@ -5,7 +5,6 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import ReactLogo from './svg/logo.svg';
 import CartIcon from './CartIcon';
 import './Navigation.css';
-import WishListIcon from './WishListIcon';
 
 
 const Navigation = () => {
@@ -21,10 +20,8 @@ const Navigation = () => {
     const authUsers = (
         <>
             {!isAdmin &&
-                <>
-                    <WishListIcon />
-                    <CartIcon />
-                </>
+
+                <CartIcon />
             }
 
             <li className='nav-item'><Link className='nav-link' to='/signout'>Sign Out</Link></li>

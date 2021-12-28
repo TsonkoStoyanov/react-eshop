@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BsBag, BsBagFill, BsHeart, BsPencil, BsSearch } from 'react-icons/bs';
+import { BsBag, BsBagFill, BsPencil, BsSearch } from 'react-icons/bs';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
@@ -7,7 +7,7 @@ import { isInCart } from '../../../helpers';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
-    const { isAuthenticated, isAdmin } = useAuthContext();
+    const { isAdmin } = useAuthContext();
     const { cartItems, addProduct } = useCartContext();
 
     let discount = Number(product.discount);
@@ -17,26 +17,15 @@ const ProductCard = ({ product }) => {
     let productEdit = `/products/edit/${product.id}`;
     let isProductInCart = isInCart(product.id, cartItems);
 
-    const onClickLikeHandler = (e) => {
-        console.log('like-handler');
-    }    
-
     const adminActions = (
         <li><Link to={productEdit}><BsPencil className='action-icon' /></Link></li>
     );
-    
-    const userActions = (
-        <>
-            <li>{isProductInCart
-                ? <Link to='/cart'><BsBagFill className='action-icon' /></Link>
-                : <BsBag className='action-icon product-action' onClick={() => addProduct(product)} />
-            }</li>
 
-            {isAuthenticated
-                ? <li><BsHeart className='action-icon product-action' onClick={onClickLikeHandler} /></li>
-                : <li><Link to='/signin'><BsHeart className='action-icon' /></Link></li>
-            }
-        </>
+
+    const userActions = (
+        <li>{isProductInCart
+            ? <Link to='/cart'><BsBagFill className='action-icon' /></Link>
+            : <BsBag className='action-icon product-action' onClick={() => addProduct(product)} />}</li>
     );
 
     return (
