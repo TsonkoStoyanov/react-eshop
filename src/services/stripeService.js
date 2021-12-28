@@ -19,8 +19,8 @@ export const CreateCheckoutSession = async (data) => {
     let jsonResult = await response.json();
     
     if (response.ok) {
-        return jsonResult.value;           
+        return jsonResult;           
     } else {
-        throw jsonResult.value;
+        throw jsonResult;
     }
 };

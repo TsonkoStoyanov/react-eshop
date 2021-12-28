@@ -1,5 +1,10 @@
 import * as constants from './constants/constants'
 
+export const priceWithDiscount = (price, discount) =>{
+    let test =   price - price * (discount / 100);
+    return test;
+}
+
 export const isInCart = (id, cartItems) => {
     return cartItems.find(item => item.id === id);
 }

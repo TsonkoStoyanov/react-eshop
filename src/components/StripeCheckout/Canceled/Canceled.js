@@ -5,8 +5,7 @@ const Canceled = () => {
 
   return (
     <section className='checkout'>
-      <h1>Payment failed</h1>
-      <p>Payment was not successful</p>
+      <h1>Payment failed or cancelled</h1>      
       <div>
         <button className='btn btn-primary'
           onClick={() => navigate('/')}>

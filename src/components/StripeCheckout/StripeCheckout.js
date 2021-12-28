@@ -3,6 +3,7 @@ import { useCartContext } from '../../contexts/CartContext';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 import * as stripeService from '../../services/stripeService';
+import { priceWithDiscount } from '../../helpers'; 
 
 const StripeCheckout = () => {
 
@@ -20,7 +21,7 @@ const StripeCheckout = () => {
         quantity: item.quantity,
         priceData: {
           currency: 'usd',
-          unitAmount: item.price * 100,
+          unitAmount: priceWithDiscount(item.price, item.discount) * 100,
           productData: {
             name: item.name,
             description: item.description,
@@ -29,17 +30,22 @@ const StripeCheckout = () => {
         }
       }
     });
+    try {
+      const response = await stripeService.CreateCheckoutSession({ lineItems, email: user.email });
 
-    const response = await stripeService.CreateCheckoutSession({lineItems, email: user.email });
+      const { sessionId } = response;
+      console.log(sessionId);
+      console.log(response);
+      const { error } = await stripe.redirectToCheckout({
+        sessionId
+      });
 
-    const { sessionId } = response;
-
-    const { error } = await stripe.redirectToCheckout({
-      sessionId
-    });
-
-    if (error) {
-      console.log(error);
+      if (error) {
+        console.log(error);
+      }
+    }
+    catch (err) {
+      console.log(err);
     }
   }
 

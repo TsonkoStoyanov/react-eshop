@@ -21,6 +21,8 @@ import Edit from './components/Products/Edit';
 import Cart from './components/Cart';
 import IsAdminRoute from './components/Common/GuardedRoutes/IsAdminRoute';
 import IsNotAdminRoute from './components/Common/GuardedRoutes/IsNotAdminRoute';
+import Success from './components/StripeCheckout/Success/Success';
+import Canceled from './components/StripeCheckout/Canceled/Canceled';
 
 const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
 
@@ -47,6 +49,8 @@ function App() {
                   <Route element={<IsNotAdminRoute />}>
                     <Route path='/cart' element={<Cart />} />
                   </Route>
+                  <Route path='/payment-success' element={<Success />} />
+                  <Route path='/payment-cancelled' element={<Canceled />} />
                 </Routes>
               </main>
               <Footer />
