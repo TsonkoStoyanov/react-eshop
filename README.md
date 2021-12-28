@@ -1,4 +1,8 @@
-softuni-react-eshop.netlify.app
+https://softuni-react-eshop.netlify.app/
+
+to create and edit products use
+username: Admin
+password: P@ssw0rd
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6852afdf-9491-48eb-ae9a-faf9bf4e4f05/deploy-status)](https://app.netlify.com/sites/softuni-react-eshop/deploys)
 
